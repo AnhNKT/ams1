@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Product Detail</title>
+</head>
+
+<body>
+   <div class="container">
+      <div class="row">
+         <div class="col">
+            <img src="{{ product.image }}" width="400" height="450">
+         </div>
+         <div class="col">
+            <h1 class="text text-danger">Product Detail</h1>
+            <h3>devil_fruit: {{ product.devil_fruit }}</h3>
+            <h3>role: {{ product.role }}</h3>
+            <h3>bounty: ${{ product.bounty }}</h3>
+            <h3>Publisher: {{ product.publisher.name }}</h3>
+         </div>
+      </div>
+   </div>
+</body>
+
+</html>
