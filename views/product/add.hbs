@@ -18,6 +18,14 @@
          <input class="form-control" type="text" name="devil_fruit" placeholder="Enter devil fruit name (optional)">
       </div>
       <div class="form-group mt-3">
+         <label class="text text-danger fw-bold">Product Character</label>
+         <select class="form-control" name="character">
+            {{#each character }}
+               <option value="{{_id}}">{{ address }}</option>
+            {{/each}}
+         </select>
+      </div>
+      <div class="form-group mt-3">
          <label class="text text-danger fw-bold">Product Crew</label>
          <input class="form-control" type="text" placeholder="Enter product crew" name="crew" required minlength="3">
       </div>

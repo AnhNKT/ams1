@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+var ProductModel = require('../models/ProductModel'); // Đảm bảo đường dẫn đúng
+var PublisherModel = require('../models/PublisherModel'); // Đảm bảo đường dẫn đúng
+
 // Dữ liệu mẫu để render trong template Handlebars
 const carouselImages = [
   { src: '/images/carousel1.jpg', alt: 'Carousel Image 1' },
@@ -28,32 +31,19 @@ router.get('/', (req, res) => {
    });
 });
 
-// Route cho trang page để hiển thị sản phẩm
-router.get('/page', (req, res) => {
-   // Render template page.hbs với danh sách sản phẩm
-   res.render('page', {
-      title: "Product Page",
-      products: products,
-      layout: false  // Tắt layout cho route này
-   });
-});
-
-// Xử lý POST yêu cầu đăng nhập
-router.post('/index', (req, res) => {
-   // Lấy dữ liệu từ form đăng nhập
-   let username = req.body.username;
-   let password = req.body.password;
-
-   // Kiểm tra thông tin đăng nhập và chuyển hướng dựa trên tài khoản
-   if (username === "admin" && password === "admin") {
-      // Chuyển hướng tới trang admin
-      res.redirect('/product/admin');
-   } else if (username === "customer" && password === "customer") {
-      // Chuyển hướng tới trang khách hàng
-      res.redirect('/product/customer');
-   } else {
-      // Đăng nhập thất bại => chuyển hướng lại trang login
-      res.redirect('/');
+// Route cho trang page để hiển thị sản phẩm từ cơ sở dữ liệu
+router.get('/page', async (req, res) => {
+   try {
+       // Truy vấn sản phẩm từ cơ sở dữ liệu
+       let products = await ProductModel.find({}).sort({ _id: -1 });
+       res.render('page', { // Đảm bảo rằng `views/page.handlebars` tồn tại
+          name: "Product Page",
+          products: products,
+          layout: false  // Tắt layout cho route này
+       });
+   } catch (error) {
+       console.error('Error fetching products:', error);
+       res.status(500).send('Internal Server Error');
    }
 });
 

@@ -4,6 +4,7 @@ const router = express.Router();
 var ProductModel = require('../models/ProductModel')
 var CharacterModel = require('../models/CharacterModel')
 
+app.use('/product', productRouter);
 // Get all products
 router.get('/admin', async (req, res) => {
    let products = await ProductModel.find({}).sort({ _id: -1 });
