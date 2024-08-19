@@ -11,15 +11,15 @@
    <div class="container">
       <div class="row">
          <div class="col">
-            <img src="{{ product.image }}" width="400" height="450">
+            <img src="{{ products.image }}" width="400" height="450">
          </div>
          <div class="col">
             <h1 class="text text-danger">Product Detail</h1>
-            <h3>name: {{ product.name }}</h3>
-            <h3>devil_fruit: {{ product.devil_fruit }}</h3>
-            <h3>role: {{ product.role }}</h3>
-            <h3>bounty: ${{ product.bounty }}</h3>
-            <h3>Publisher: {{ product.publisher.name }}</h3>
+            <h3>name: {{ products.name }}</h3>
+            <h3>devil_fruit: {{ products.devil_fruit }}</h3>
+            <h3>role: {{ products.role }}</h3>
+            <h3>bounty: ${{ products.bounty }}</h3>
+            <h3>Character: {{ products.characters.address }}</h3>
          </div>
       </div>
    </div>

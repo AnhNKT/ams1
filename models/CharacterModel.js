@@ -1,11 +1,13 @@
-const mongoose = require('mongoose')
-const CharacterSchema = new mongoose.Schema(
-   {
-      address: {
-         type: String,
-         required: true
-      }
+const mongoose = require('mongoose');
+
+const CharacterSchema = new mongoose.Schema({
+   address: {
+      type: String,
+      required: true
    }
-)
-const CharacterModel = mongoose.model('character', CharacterSchema)
-module.exports = CharacterModel
+});
+
+// Đổi tên model từ 'character' thành 'Character'
+const CharacterModel = mongoose.model('Characters', CharacterSchema);
+
+module.exports = CharacterModel;

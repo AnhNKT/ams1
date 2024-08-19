@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var ProductModel = require('../models/ProductModel'); // Đảm bảo đường dẫn đúng
-var PublisherModel = require('../models/PublisherModel'); // Đảm bảo đường dẫn đúng
+var CharacterModel = require('../models/CharacterModel'); // Đảm bảo đường dẫn đúng
 
 // Dữ liệu mẫu để render trong template Handlebars
 const carouselImages = [
@@ -31,6 +31,8 @@ router.get('/', (req, res) => {
    });
 });
 
+
+
 // Route cho trang page để hiển thị sản phẩm từ cơ sở dữ liệu
 router.get('/page', async (req, res) => {
    try {
@@ -39,7 +41,7 @@ router.get('/page', async (req, res) => {
        res.render('page', { // Đảm bảo rằng `views/page.handlebars` tồn tại
           name: "Product Page",
           products: products,
-          layout: false  // Tắt layout cho route này
+          layout: false
        });
    } catch (error) {
        console.error('Error fetching products:', error);

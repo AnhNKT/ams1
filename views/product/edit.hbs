@@ -1,22 +1,22 @@
 <div class="container text-center card bg-light col-md-6">
-   <form action="/product/edit/{{ product._id }}" method="post">
+   <form action="/product/edit/{{ products._id }}" method="post">
       <h1 class="alert alert-warning text-uppercase">Edit product</h1>
       <div class="form-group mt-3">
          <label class="text text-danger fw-bold">Product name</label>
-         <input class="form-control" type="text" placeholder="Enter product title" name="title" required minlength="5" value="{{ product.name }}">
+         <input class="form-control" type="text" placeholder="Enter product name" name="name" required minlength="5" value="{{ products.name }}">
       </div>
       <div class="form-group mt-3">
          <label class="text text-danger fw-bold">Product role</label>
-         <input class="form-control" type="number" name="price" placeholder="Enter product price" value="{{ product.role }}">
+         <input class="form-control" type="text" name="role" placeholder="Enter product role" value="{{ products.role }}">
       </div>
             <div class="form-group mt-3">
          <label class="text text-danger fw-bold">Product bounty</label>
-         <input class="form-control" type="number" name="price" placeholder="Enter product price" value="{{ product.bounty }}">
+         <input class="form-control" type="number" name="bounty" placeholder="Enter product bounty" value="{{ products.bounty }}">
       </div>
       <div class="form-group mt-3">
          <label class="text text-danger fw-bold">Product Image</label><br>
-         <img src="{{ product.image }}" width="100" height="120"><br>
-         <input class="form-control" type="url" name="image" placeholder="Enter product image url" required value="{{ product.image }}">
+         <img src="{{ products.image }}" width="100" height="120"><br>
+         <input class="form-control" type="url" name="image" placeholder="Enter product image url" required value="{{ products.image }}">
       </div>
       <div class="form-group mt-3 mb-3">
          <input class="btn btn-success" type="submit" value="Edit">

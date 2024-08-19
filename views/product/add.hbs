@@ -1,40 +1,55 @@
-<div class="container text-center card bg-light col-md-6">
-   <form action="/product/add" method="post">
-      <h1 class="alert alert-warning text-uppercase">Add New Product</h1>
-      <div class="form-group mt-3">
-         <label class="text text-danger fw-bold">Product Name</label>
-         <input class="form-control" type="text" placeholder="Enter product name" name="name" required minlength="2">
-      </div>
-      <div class="form-group mt-3">
-         <label class="text text-danger fw-bold">Product Role</label>
-         <input class="form-control" type="text" placeholder="Enter product role" name="role" required minlength="3">
-      </div>
-      <div class="form-group mt-3">
-         <label class="text text-danger fw-bold">Product Bounty</label>
-         <input class="form-control" type="number" name="bounty" placeholder="Enter product bounty" required min="0">
-      </div>
-      <div class="form-group mt-3">
-         <label class="text text-danger fw-bold">Devil Fruit (optional)</label>
-         <input class="form-control" type="text" name="devil_fruit" placeholder="Enter devil fruit name (optional)">
-      </div>
-      <div class="form-group mt-3">
-         <label class="text text-danger fw-bold">Product Character</label>
-         <select class="form-control" name="character">
-            {{#each character }}
-               <option value="{{_id}}">{{ address }}</option>
-            {{/each}}
-         </select>
-      </div>
-      <div class="form-group mt-3">
-         <label class="text text-danger fw-bold">Product Crew</label>
-         <input class="form-control" type="text" placeholder="Enter product crew" name="crew" required minlength="3">
-      </div>
-      <div class="form-group mt-3">
-         <label class="text text-danger fw-bold">Product Image URL</label>
-         <input class="form-control" type="url" name="image" placeholder="Enter product image URL" required>
-      </div>
-      <div class="form-group mt-3 mb-3">
-         <input class="btn btn-success" type="submit" value="Add">
-      </div>
-   </form>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Add New Product</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+   <div class="container text-center card bg-light col-md-6">
+      <form action="/product/add" method="post">
+         <h1 class="alert alert-warning text-uppercase">Add New Product</h1>
+         <div class="form-group mt-3">
+            <label class="text text-danger fw-bold">Product Name</label>
+            <input class="form-control" type="text" placeholder="Enter product name" name="name" required minlength="2">
+         </div>
+         <div class="form-group mt-3">
+            <label class="text text-danger fw-bold">Product Role</label>
+            <input class="form-control" type="text" placeholder="Enter product role" name="role" required minlength="3">
+         </div>
+         <div class="form-group mt-3">
+            <label class="text text-danger fw-bold">Product Bounty</label>
+            <input class="form-control" type="number" name="bounty" placeholder="Enter product bounty" required min="0">
+         </div>
+         <div class="form-group mt-3">
+            <label class="text text-danger fw-bold">Devil Fruit (optional)</label>
+            <input class="form-control" type="text" name="devil_fruit" placeholder="Enter devil fruit name (optional)">
+         </div>
+         <div class="form-group mt-3">
+            <label class="text text-danger fw-bold">Product Character</label>
+            <select class="form-control" name="characters" required>
+               {{#each characters}}
+                  <option value="{{_id}}">{{address}}</option>
+               {{/each}}
+            </select>
+         </div>
+         <div class="form-group mt-3">
+            <label class="text text-danger fw-bold">Product Crew</label>
+            <input class="form-control" type="text" placeholder="Enter product crew" name="crew" required minlength="3">
+         </div>
+         <div class="form-group mt-3">
+            <label class="text text-danger fw-bold">Product Image URL</label>
+            <input class="form-control" type="url" name="image" placeholder="Enter product image URL">
+         </div>
+         <div class="form-group mt-3 mb-3">
+            <input class="btn btn-success" type="submit" value="Add">
+         </div>
+      </form>
+   </div>
+
+</body>
+
+</html>

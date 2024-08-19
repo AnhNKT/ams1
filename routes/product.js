@@ -1,108 +1,128 @@
 const express = require('express');
 const router = express.Router();
 
-var ProductModel = require('../models/ProductModel')
-var CharacterModel = require('../models/CharacterModel')
+const ProductModel = require('../models/ProductModel');
+const CharacterModel = require('../models/CharacterModel');
 
-app.use('/product', productRouter);
-// Get all products
+// Get all products for admin
 router.get('/admin', async (req, res) => {
-   let products = await ProductModel.find({}).sort({ _id: -1 });
-   res.render('product/admin', { products });
-});
+    let products = await ProductModel.find({}).sort({ _id: -1 })
+    res.render('product/admin', { products })
+ })
 
 // Get all products for customers
 router.get('/customer', async (req, res) => {
-   let products = await ProductModel.find({}).sort({ _id: -1 });
-   res.render('product/customer', { products });
-});
+    let products = await ProductModel.find({}).sort({ _id: -1 })
+    res.render('product/customer', { products })
+ })
 
 // Get product by id
 router.get('/detail/:id', async (req, res) => {
-   try {
-      let id = req.params.id;
-      let product = await ProductModel.findById(id).populate('character');
+    try {
+        let id = req.params.id;
+        let products = await ProductModel.findById(id).populate('characters');
 
-      if (!product) {
-         return res.status(404).send('Product not found');
-      }
+        if (!products) {
+            return res.status(404).send('Product not found');
+        }
 
-      console.log(product);
-      res.render('product/detail', { product });
-   } catch (err) {
-      console.error(err);
-      res.status(500).send('Server Error');
-   }
+        console.log(products);
+        res.render('product/detail', { products });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
 });
 
 // Delete product by id
 router.get('/delete/:id', async (req, res) => {
-   let id = req.params.id;
-   try {
-      await ProductModel.findByIdAndDelete(id);
-      console.log('Delete succeed!');
-   } catch (err) {
-      console.error(err);
-   }
-   res.redirect('/product/admin');
+    try {
+        let id = req.params.id;
+        await ProductModel.findByIdAndDelete(id);
+        console.log('Delete succeed!');
+        res.redirect('/product/admin');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
 });
 
 // Render form to add product
 router.get('/add', async (req, res) => {
-   let character = await CharacterModel.find({});
-   res.render('product/add', { character });
-});
+    let characters = await CharacterModel.find({})
+    res.render('product/add' , { characters })
+ })
 
 // Handle add product form submission
 router.post('/add', async (req, res) => {
-   try {
-      let product = req.body;
-      await ProductModel.create(product);
-      console.log('Add product succeed!');
-   } catch (err) {
-      console.error(err);
-   }
-   res.redirect('/product/admin');
-});
+    try {
+       //get input data
+       let product = req.body
+       //save book to DB
+       await ProductModel.create(product)
+       //show message to console
+       console.log('Add book succeed !')
+    } catch (err) {
+       console.error (err)
+    }
+ 
+    //redirect to book list page
+    res.redirect('/product/admin')
+ })
 
 // Render form to edit product
 router.get('/edit/:id', async (req, res) => {
-   let id = req.params.id;
-   let product = await ProductModel.findById(id);
-   res.render('product/edit', { product });
-});
-
-// Handle edit product form submission
-router.post('/edit/:id', async (req, res) => {
-   let id = req.params.id;
-   let product = req.body;
-   try {
-      await ProductModel.findByIdAndUpdate(id, product);
-      console.log('Edit product succeed!');
-   } catch (err) {
-      console.log("Edit product failed !");
-      console.error(err);
-   }
-   res.redirect('/product/admin');
-});
+    let id = req.params.id
+    let products = await ProductModel.findById(id)
+    res.render('product/edit', { products })
+ })
+ 
+ //process form "edit"
+ router.post('/edit/:id', async (req, res) => {
+    let id = req.params.id
+    let products = req.body
+    try {
+       await ProductModel.findByIdAndUpdate(id, products)
+       console.log('Edit product succeed !')
+    } catch (err) {
+       console.log("Edit product failed !")
+       console.error(err)
+    }
+    res.redirect('/product/admin')
+ })
 
 // Handle search products
 router.post('/search', async (req, res) => {
-   let keyword = req.body.name;
-   let products = await ProductModel.find({ name: new RegExp(keyword, "i") });
-   res.render('product/admin', { products });
+    try {
+        let keyword = req.body.name;
+        let products = await ProductModel.find({ name: new RegExp(keyword, "i") });
+        res.render('product/admin', { products });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
 });
 
 // Sort products ascending
 router.get('/sort/asc', async (req, res) => {
-   let products = await ProductModel.find().sort({ price: 1 });
-   res.render('product/admin', { products });
+    try {
+        let products = await ProductModel.find().sort({ bounty: 1 }); // Sắp xếp theo bounty nếu không có trường price
+        res.render('product/admin', { products });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
 });
 
 // Sort products descending
 router.get('/sort/desc', async (req, res) => {
-   let products = await ProductModel.find().sort({ price: -1 });
-   res.render('product/admin', { products });
+    try {
+        let products = await ProductModel.find().sort({ bounty: -1 }); // Sắp xếp theo bounty nếu không có trường price
+        res.render('product/admin', { products });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
 });
 
 module.exports = router;
