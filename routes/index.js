@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
       addToCartButtonText: "Add to Cart",
       carouselImages: carouselImages,
       products: products,
-      layout: false  // Tắt layout cho route này
+      layout: 'layout'  
    });
 });
 
@@ -39,9 +39,9 @@ router.get('/page', async (req, res) => {
        // Truy vấn sản phẩm từ cơ sở dữ liệu
        let products = await ProductModel.find({}).sort({ _id: -1 });
        res.render('page', { // Đảm bảo rằng `views/page.handlebars` tồn tại
-          name: "Product Page",
-          products: products,
-          layout: false
+           name: "Product Page",
+           products: products,
+           layout: 'layout_page' // Sử dụng layout `layout_page.handlebars`
        });
    } catch (error) {
        console.error('Error fetching products:', error);
