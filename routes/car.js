@@ -50,11 +50,11 @@ router.get('/delete/:id', async (req, res) => {
 router.post('/add', async (req, res) => {
     try {
        //get input data
-       let cars = req.body
+       let car = req.body
        //save book to DB
-       await CarModel.create(cars)
+       await CarModel.create(car)
        //show message to console
-       console.log('Add book succeed !')
+       console.log('Add car succeed !')
     } catch (err) {
        console.error (err)
     }
