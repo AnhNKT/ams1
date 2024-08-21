@@ -26,6 +26,9 @@ app.use(bodyParser.urlencoded({ extended : true }))
 var ProductRouter = require('./routes/product')
 app.use('/product', ProductRouter)
 
+var CarRouter = require('./routes/car')
+app.use('/Car', CarRouter)
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

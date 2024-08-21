@@ -3,6 +3,7 @@ var router = express.Router();
 
 var ProductModel = require('../models/ProductModel'); // Đảm bảo đường dẫn đúng
 var CharacterModel = require('../models/CharacterModel'); // Đảm bảo đường dẫn đúng
+const CarModel = require('../models/CarModel');
 
 // Dữ liệu mẫu để render trong template Handlebars
 const carouselImages = [
@@ -48,5 +49,21 @@ router.get('/page', async (req, res) => {
        res.status(500).send('Internal Server Error');
    }
 });
+
+router.get('/car', async (req, res) => {
+  try {
+      // Truy vấn sản phẩm từ cơ sở dữ liệu
+      let cars = await CarModel.find({}).sort({ _id: -1 });
+      res.render('car', { // Đảm bảo rằng `views/page.handlebars` tồn tại
+          name: "Product Car",
+          cars: cars,
+          layout: 'layout_page' // Sử dụng layout `layout_page.handlebars`
+      });
+  } catch (error) {
+      console.error('Error fetching cars:', error);
+      res.status(500).send('Internal Server Error');
+  }
+});
+
 
 module.exports = router;

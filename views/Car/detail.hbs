@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Car Detail</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <style>
+      body {
+         background-color: #92ffef; /* Light cyan background for the whole page */
+      }
+
+      .container {
+         margin-top: 50px; /* Add top margin to move the content down */
+      }
+
+      .product-image {
+         border: 2px solid #dee2e6; /* Border around the image */
+         border-radius: 8px; /* Rounded corners for the image */
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect for the image */
+         overflow: hidden; /* Hide any overflow */
+         max-width: 100%; /* Ensure image does not exceed container width */
+         height: auto; /* Maintain aspect ratio */
+      }
+
+      .product-details {
+         padding-left: 20px; /* Add padding to the left of the details */
+      }
+
+      .product-details h1 {
+         color: #dc3545; /* Red color for the title */
+         margin-bottom: 20px; /* Add bottom margin */
+      }
+
+      .product-details h3 {
+         color: #343a40; /* Dark gray color for the headings */
+         margin-bottom: 15px; /* Add bottom margin */
+      }
+
+      .product-details h3 span {
+         font-weight: bold; /* Bold font for the labels */
+      }
+   </style>
+</head>
+
+<body>
+   <div class="container">
+      <div class="row">
+         <div class="col-md-6">
+           <img src="{{ cars.image }}" width="400" height="450">
+         </div>
+         <div class="col-md-6 product-details">
+            <h1 class="text text-danger">Car Detail</h1>
+            <h3>Brand: {{ cars.brand }}</h3>
+            <h3>Model: {{ cars.model }}</h3>
+            <h3>Year:  {{ cars.year }}</h3>
+            <h3>Color: {{ cars.color }}</h3>
+            <h3>Engine:{{ cars.engine }}</h3>
+            <h3>Owner: {{ cars.owner }}</h3>
+            <h3>Registration:{{ cars.registration }}</h3>
+         </div>
+      </div>
+   </div>
+</body>
+
+</html>

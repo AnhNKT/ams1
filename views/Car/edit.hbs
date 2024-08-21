@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Edit Car</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <style>
+       /* Custom CSS Styles */
+       body {
+           background-color: #f8f9fa; /* Light gray background for the whole page */
+       }
+
+       .container {
+           margin-top: 50px; /* Add top margin to move the form down */
+       }
+
+       .card {
+           border-radius: 10px; /* Rounded corners for the card */
+           box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Shadow effect for the card */
+           padding: 20px; /* Padding inside the card */
+       }
+
+       .alert-warning {
+           background-color: #ffc107; /* Background color for the alert */
+           color: #212529; /* Darker text color for readability */
+           border: 1px solid #ffc107; /* Matching border color */
+           border-radius: 5px; /* Rounded corners for the alert */
+           padding: 15px; /* Padding inside the alert */
+       }
+
+       .form-group label {
+           font-size: 1.1rem; /* Slightly larger font size for labels */
+           color: #dc3545; /* Danger color for labels */
+       }
+
+       .form-control {
+           border-radius: 5px; /* Rounded corners for input fields */
+           box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); /* Inner shadow effect */
+           padding: 10px; /* Increase padding inside input fields */
+       }
+
+       .btn-success {
+           width: 100%; /* Make the button full-width */
+           border-radius: 5px; /* Rounded corners for the button */
+           padding: 10px; /* Increase button padding for better click area */
+           font-size: 1.1rem; /* Larger font size for better readability */
+           font-weight: bold; /* Bold font weight for the button text */
+       }
+
+       .btn-success:hover {
+           background-color: #218838; /* Darker green on hover */
+           border-color: #1e7e34; /* Darker green border on hover */
+       }
+
+       .form-group img {
+           border: 1px solid #ddd; /* Border around the image */
+           border-radius: 5px; /* Rounded corners for the image */
+           margin-bottom: 10px; /* Margin below the image */
+       }
+   </style>
+</head>
+
+<body>
+   <div class="container text-center card bg-light col-md-8">
+      <form action="/Car/edit/{{ cars._id }}" method="post">
+         <h1 class="alert alert-warning text-uppercase">Edit Car</h1>
+         <div class="form-group mt-3">
+            <label class="text text-danger fw-bold">Brand</label>
+            <input class="form-control" type="text" placeholder="Enter car brand" name="brand" required minlength="2" value="{{ cars.brand }}">
+         </div>
+         <div class="form-group mt-3">
+            <label class="text text-danger fw-bold">Model</label>
+            <input class="form-control" type="text" name="model" placeholder="Enter car model" required minlength="2" value="{{ cars.model }}">
+         </div>
+         <div class="form-group mt-3">
+            <label class="text text-danger fw-bold">Year</label>
+            <input class="form-control" type="number" name="year" placeholder="Enter car year" required min="1900" max="2099" value="{{ cars.year }}">
+         </div>
+         <div class="form-group mt-3">
+            <label class="text text-danger fw-bold">Color</label>
+            <input class="form-control" type="text" name="color" placeholder="Enter car color" value="{{ cars.color }}">
+         </div>
+         <div class="form-group mt-3">
+            <label class="text text-danger fw-bold">Engine</label>
+            <input class="form-control" type="text" name="engine" placeholder="Enter car engine type" value="{{ cars.engine }}">
+         </div>
+         <div class="form-group mt-3">
+            <label class="text text-danger fw-bold">Owner</label>
+            <input class="form-control" type="text" name="owner" placeholder="Enter car owner" value="{{ cars.owner }}">
+         </div>
+         <div class="form-group mt-3">
+            <label class="text text-danger fw-bold">Registration</label>
+            <input class="form-control" type="text" name="registration" placeholder="Enter car registration" value="{{ cars.registration }}">
+         </div>
+         <div class="form-group mt-3">
+            <label class="text text-danger fw-bold">Car Image</label><br>
+            <img src="{{ cars.image }}" width="100" height="120" alt="Car Image"><br>
+            <input class="form-control" type="url" name="image" placeholder="Enter car image URL" value="{{ cars.image }}">
+         </div>
+         <div class="form-group mt-3 mb-3">
+            <input class="btn btn-success" type="submit" value="Save Changes">
+         </div>
+      </form>
+   </div>
+
+</body>
+
+</html>
