@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 var ProductModel = require('../models/ProductModel'); // Đảm bảo đường dẫn đúng
-var CharacterModel = require('../models/CharacterModel'); // Đảm bảo đường dẫn đúng
 const CarModel = require('../models/CarModel');
 
 // Dữ liệu mẫu để render trong template Handlebars

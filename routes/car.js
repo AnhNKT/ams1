@@ -26,7 +26,7 @@ router.get('/detail/:id', async (req, res) => {
         }
 
         console.log(cars);
-        res.render('Car/detail', { cars });
+        res.render('Car/detail', { cars});
     } catch (err) {
         console.error(err);
         res.status(500).send('Server Error');
@@ -45,16 +45,24 @@ router.get('/delete/:id', async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
-
+router.get('/add', async (req, res) => {
+    try {
+        let Cars = await CarModel.find({});
+        res.render('Car/add');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+});
 // Handle add product form submission
 router.post('/add', async (req, res) => {
     try {
        //get input data
-       let car = req.body
+       let cars = req.body
        //save book to DB
-       await CarModel.create(car)
+       await CarModel.create(cars)
        //show message to console
-       console.log('Add car succeed !')
+       console.log('Add book succeed !')
     } catch (err) {
        console.error (err)
     }
